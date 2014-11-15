@@ -1,6 +1,8 @@
 package com.example.base;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.Menu;
@@ -11,34 +13,39 @@ import android.view.View;
 import android.widget.EditText;
 import android.location.Location;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends Activity {
-    Button buttonSend;
+    Timer notifyTimer = new Timer(true);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button=(Button)findViewById(R.id.buttonSend);
-        button.setOnClickListener(new OnClickListener() {
-
+        Button start=(Button)findViewById(R.id.start_button);
+        start.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                String phoneNumber = "5203183626";
-                String message = "Hello World!";
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+                // TODO have the time parameter below provided by entry
+                EditText time = (EditText) findViewById(R.id.user_Notification_Interval);
+                NotifyTask notify = new NotifyTask();
+                notifyTimer.schedule(notify, 5000);//Integer.parseInt(time.getText().toString()));
 
-
+                // TODO run() in Notify task needs to provide option of SMS and cancel
         }});
-//        Location location = new Location();
-//        location.getLatitude();
-//        location.getLongitude();
-        String forText = "http://maps.google.com/maps?q=lat,lng";
-        SmsManager smsManager =     SmsManager.getDefault();
-        smsManager.sendTextMessage("Phone Number", null, "Message", null, null);
     }
 
+    public class NotifyTask extends TimerTask {
+        @Override
+        public void run(){
+            //GO CHECK OUT THE APP BRO
+            Button start=(Button)findViewById(R.id.start_button);
+            Intent newEntryIntent = new Intent(start.getContext(), TouchBaseActivity.class);
+            // start the next Activity the prepared Intent
+            startActivity(newEntryIntent);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
