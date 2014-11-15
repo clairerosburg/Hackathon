@@ -10,9 +10,11 @@ import android.view.View.OnClickListener;
 import android.view.View;
 import android.widget.EditText;
 import android.location.Location;
+import java.util.Timer;
 
 public class MainActivity extends Activity {
     Button buttonSend;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,20 +26,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                String phoneNumber = "5203183626";
-                String message = "Hello World!";
+                String phoneNumber = "5303183626";
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+                smsManager.sendTextMessage(phoneNumber, null, "http://maps.google.com/maps?q=34.099360,-117.713500", null, null);
 
 
         }});
-//        Location location = new Location();
-//        location.getLatitude();
-//        location.getLongitude();
-        String forText = "http://maps.google.com/maps?q=lat,lng";
-        SmsManager smsManager =     SmsManager.getDefault();
-        smsManager.sendTextMessage("Phone Number", null, "Message", null, null);
     }
+
 
 
     @Override
