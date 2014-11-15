@@ -12,12 +12,14 @@ import android.view.View.OnClickListener;
 import android.view.View;
 import android.widget.EditText;
 import android.location.Location;
+import java.util.Timer;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends Activity {
     Timer notifyTimer = new Timer(true);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +29,18 @@ public class MainActivity extends Activity {
         start.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 // TODO have the time parameter below provided by entry
                 EditText time = (EditText) findViewById(R.id.user_Notification_Interval);
                 NotifyTask notify = new NotifyTask();
                 notifyTimer.schedule(notify, 5000);//Integer.parseInt(time.getText().toString()));
+=======
+                // TODO Auto-generated method stub
+                String phoneNumber = "5303183626";
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phoneNumber, null, "http://maps.google.com/maps?q=34.099360,-117.713500", null, null);
+
+>>>>>>> origin/master
 
                 // TODO run() in Notify task needs to provide option of SMS and cancel
         }});
@@ -46,6 +56,7 @@ public class MainActivity extends Activity {
             startActivity(newEntryIntent);
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
