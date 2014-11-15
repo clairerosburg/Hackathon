@@ -2,16 +2,41 @@ package com.example.base;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.telephony.SmsManager;
+import android.view.View.OnClickListener;
+import android.view.View;
+import android.widget.EditText;
+import android.location.Location;
 
 public class MainActivity extends Activity {
+    Button buttonSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button button=(Button)findViewById(R.id.buttonSend);
+        button.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                String phoneNumber = "5203183626";
+                String message = "Hello World!";
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+
+
+        }});
+//        Location location = new Location();
+//        location.getLatitude();
+//        location.getLongitude();
+        String forText = "http://maps.google.com/maps?q=lat,lng";
+        SmsManager smsManager =     SmsManager.getDefault();
+        smsManager.sendTextMessage("Phone Number", null, "Message", null, null);
     }
 
 
